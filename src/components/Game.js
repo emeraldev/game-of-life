@@ -83,6 +83,7 @@ const Game = () => {
       <p>Riafugemu</p>
       <div
         className="Grid"
+        data-testid="game-grid"
         style={{ width: width, height: height, backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`,
           display: 'grid',
           gridTemplateColumns: `repeat(${numCols}, 20px)`
@@ -110,9 +111,16 @@ const Game = () => {
         )}
       </div>
       <div className="Controls">
-        Update every <input type="text" pattern="[0-9]*" value={interval} onChange={handleIntervalChange} /> msec
+        Update every <input
+          type="number"
+          pattern="[0-9]*"
+          value={interval}
+          data-testid="interval-input"
+          onChange={handleIntervalChange}
+        /> msec
         <button
           className="Button"
+          data-testid="start-button"
           onClick={() => {
             setIsRunning(!isRunning);
             if (!isRunning) {
@@ -126,6 +134,7 @@ const Game = () => {
         
         <button
           className="Button"
+          data-testid="random-button"
           onClick={() => {
             setGrid(generateRandomGrid(numRows, numCols))
           }}
@@ -135,6 +144,7 @@ const Game = () => {
 
         <button
           className="Button"
+          data-testid="clear-button"
           onClick={() => {
             setGrid(generateEmptyGrid(numRows, numCols))
           }}
